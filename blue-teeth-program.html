@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Teeth Program | モンテ矯正歯科クリニック</title>
+  <meta name="description" content="歯の未来を知る体験プログラム。Blue Teeth Programは、モンテ矯正歯科クリニックが提供する精密分析プログラムです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       CSS Variables & Reset
+    ============================================ */
+    :root {
+      --c-bg:        #ffffff;
+      --c-bg-soft:   #f5f5f7;
+      --c-bg-blue:   #f0f5fb;
+      --c-navy:      #1a2b4a;
+      --c-text:      #1d1d1f;
+      --c-sub:       #6e6e73;
+      --c-mute:      #86868b;
+      --c-border:    #d2d2d7;
+      --c-accent:    #0071e3;
+      --c-accent-lt: #e8f1fd;
+      --font-jp: 'Noto Sans JP', -apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      --font-en: 'Inter', -apple-system, sans-serif;
+      --max: 980px;
+      --sp: 128px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-jp);
+      background: var(--c-bg);
+      color: var(--c-text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ============================================
+       Fade-in utility
+    ============================================ */
+    .fi {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(.16,1,.3,1),
+                  transform 0.9s cubic-bezier(.16,1,.3,1);
+    }
+    .fi.on { opacity: 1; transform: none; }
+    .fi.d1 { transition-delay: .1s; }
+    .fi.d2 { transition-delay: .2s; }
+    .fi.d3 { transition-delay: .3s; }
+    .fi.d4 { transition-delay: .4s; }
+    .fi.d5 { transition-delay: .5s; }
+
+    /* ============================================
+       Layout helpers
+    ============================================ */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .wrap-wide {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    section { padding: var(--sp) 0; }
+
+    /* ============================================
+       Typography
+    ============================================ */
+    .label {
+      display: block;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--c-mute);
+    }
+
+    /* ============================================
+       Buttons
+    ============================================ */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-jp);
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 980px;
+      text-decoration: none;
+      transition: all .25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+      border: none;
+    }
+    .btn-solid {
+      background: var(--c-accent);
+      color: #fff;
+      padding: 14px 32px;
+    }
+    .btn-solid:hover {
+      background: #0077ed;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,113,227,.25);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--c-accent);
+      padding: 13px 30px;
+      border: 1.5px solid var(--c-accent);
+    }
+    .btn-outline:hover {
+      background: var(--c-accent-lt);
+      transform: translateY(-1px);
+    }
+    .btn-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--c-accent);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: gap .2s;
+    }
+    .btn-arrow::after { content: '→'; }
+    .btn-arrow:hover { gap: 10px; }
+
+    .btn-white {
+      background: #fff;
+      color: var(--c-navy);
+      padding: 16px 38px;
+    }
+    .btn-white:hover {
+      background: rgba(255,255,255,.9);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    }
+    .btn-white-ghost {
+      background: transparent;
+      color: #fff;
+      padding: 15px 36px;
+      border: 1.5px solid rgba(255,255,255,.45);
+    }
+    .btn-white-ghost:hover {
+      border-color: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.08);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       HEADER
+    ============================================ */
+    #hdr {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      transition: background .35s, backdrop-filter .35s, border-color .35s;
+      border-bottom: 1px solid transparent;
+    }
+    #hdr.solid {
+      background: rgba(255,255,255,.88);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border-color: rgba(0,0,0,.07);
+    }
+    .hdr-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hdr-logo {
+      font-family: var(--font-en);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .07em;
+      color: var(--c-text);
+      text-decoration: none;
+    }
+    .hdr-logo em { color: var(--c-accent); font-style: normal; }
+    .hdr-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .hdr-nav a {
+      font-size: 13px;
+      color: var(--c-text);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .hdr-nav a:hover { color: var(--c-accent); }
+    .hdr-cta { padding: 8px 18px !important; font-size: 13px !important; }
+
+    /* Hamburger */
+    .ham {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      gap: 5px;
+      flex-direction: column;
+      padding: 6px;
+    }
+    .ham span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--c-text);
+      transition: all .3s;
+    }
+    .mob-nav {
+      display: none;
+      position: fixed;
+      top: 54px;
+      inset-inline: 0;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(24px);
+      padding: 8px 24px 24px;
+      border-bottom: 1px solid var(--c-border);
+      z-index: 999;
+    }
+    .mob-nav.open { display: block; }
+    .mob-nav a {
+      display: block;
+      padding: 15px 0;
+      font-size: 16px;
+      color: var(--c-text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .mob-nav a:last-child { border-bottom: none; }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 28px 80px;
+      background: linear-gradient(180deg, #fff 0%, #f7f9fc 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Decorative orb */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,113,227,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--c-mute);
+      margin-bottom: 40px;
+    }
+    .hero-h1 {
+      font-size: clamp(42px, 6.5vw, 84px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+      color: var(--c-text);
+      margin-bottom: 36px;
+    }
+    .hero-sub {
+      font-size: clamp(15px, 1.6vw, 18px);
+      font-weight: 300;
+      line-height: 2.1;
+      color: var(--c-sub);
+      max-width: 480px;
+      margin: 0 auto 52px;
+    }
+    .hero-program {
+      font-family: var(--font-en);
+      font-size: clamp(16px, 1.8vw, 22px);
+      font-weight: 400;
+      letter-spacing: .12em;
+      color: var(--c-accent);
+      margin-bottom: 28px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    /* Scroll indicator */
+    .scroll-ind {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: scrollBounce 2.2s ease-in-out infinite;
+    }
+    .scroll-ind span {
+      font-family: var(--font-en);
+      font-size: 10px;
+      letter-spacing: .2em;
+      color: var(--c-mute);
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--c-border), transparent);
+    }
+    @keyframes scrollBounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ============================================
+       FOR YOU SECTION
+    ============================================ */
+    #for-you {
+      background: var(--c-bg);
+      padding: var(--sp) 0;
+    }
+    .fy-head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .fy-title {
+      font-size: clamp(28px, 3.8vw, 48px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+    .fy-sub {
+      font-size: clamp(15px, 1.5vw, 18px);
+      font-weight: 300;
+      line-height: 2;
+      color: var(--c-sub);
+    }
+    .fy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .fy-card {
+      background: #fff;
+      border: 1px solid var(--c-border);
+      border-radius: 20px;
+      padding: 40px 32px;
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .fy-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,.07);
+      transform: translateY(-2px);
+    }
+    .fy-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--c-accent-lt);
+      margin-bottom: 20px;
+      color: var(--c-accent);
+    }
+    .fy-icon svg { width: 22px; height: 22px; }
+    .fy-card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--c-text);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .fy-card-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--c-mute);
+      line-height: 1.75;
+    }
+    @media (max-width: 820px) {
+      .fy-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       DIFFERENCE SECTION
+    ============================================ */
+    #difference {
+      background: var(--c-bg-soft);
+      padding: var(--sp) 0;
+    }
+    .diff-head {
+      text-align: center;
+      margin-bottom: 72px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .diff-title {
+      font-size: clamp(26px, 3.8vw, 48px);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      margin-top: 14px;
+      margin-bottom: 28px;
+    }
+    .diff-sub {
+      font-size: clamp(15px, 1.5vw, 17px);
+      font-weight: 300;
+      line-height: 2.1;
+      color: var(--c-sub);
+    }
+    .diff-sub strong {
+      color: var(--c-text);
+      font-weight: 500;
+    }
+    /* 2カラムレイアウト */
+    .diff-cols {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 0;
+      align-items: start;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .diff-col {
+      background: #fff;
+      border: 1px solid var(--c-border);
+      border-radius: 24px;
+      padding: 48px 40px;
+    }
+    .diff-col-right {
+      background: linear-gradient(150deg, #f0f6ff 0%, #e6f0fd 100%);
+      border-color: rgba(0,113,227,.15);
+      box-shadow: 0 8px 40px rgba(0,113,227,.08);
+    }
+    .diff-col-label {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--c-mute);
+      margin-bottom: 28px;
+    }
+    .diff-col-right .diff-col-label {
+      color: var(--c-accent);
+    }
+    .diff-list {
+      list-style: none;
+    }
+    .diff-item {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--c-sub);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .diff-item::before {
+      content: '–';
+      color: var(--c-border);
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+    .diff-list-blue .diff-item {
+      color: var(--c-navy);
+      font-weight: 500;
+      border-bottom-color: rgba(0,113,227,.08);
+    }
+    .diff-list-blue .diff-item::before {
+      content: '✓';
+      color: var(--c-accent);
+      font-size: 13px;
+    }
+    .diff-list-blue .diff-item-last {
+      border-bottom: none;
+    }
+    .diff-arr {
+      font-size: 16px;
+      color: rgba(0,113,227,.35);
+      padding: 4px 0 4px 22px;
+      list-style: none;
+    }
+    .diff-end-label {
+      margin-top: 20px;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--c-border);
+      letter-spacing: .05em;
+    }
+    /* 中央区切り */
+    .diff-divider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      gap: 10px;
+    }
+    .diff-divider-line {
+      flex: 1;
+      width: 1px;
+      background: var(--c-border);
+    }
+    .diff-vs {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .12em;
+      color: var(--c-mute);
+      text-transform: uppercase;
+    }
+    @media (max-width: 820px) {
+      .diff-cols {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .diff-divider {
+        flex-direction: row;
+        padding-top: 0;
+        padding: 0;
+      }
+      .diff-divider-line {
+        flex: 1;
+        width: auto;
+        height: 1px;
+      }
+    }
+
+    /* ============================================
+       PROBLEM SECTION
+    ============================================ */
+    #problem { background: var(--c-bg); }
+    .prob-copy-block {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .prob-hl {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      margin-bottom: 64px;
+    }
+    .prob-lines { margin-bottom: 72px; }
+    .prob-line {
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 300;
+      line-height: 2.3;
+      color: var(--c-sub);
+    }
+    .prob-line strong {
+      color: var(--c-text);
+      font-weight: 500;
+    }
+    .prob-line.accent {
+      color: var(--c-text);
+      font-weight: 500;
+      font-size: clamp(18px, 2.2vw, 24px);
+      margin-top: 16px;
+    }
+
+    /* Comparison diagram */
+    .cmp-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .cmp-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .cmp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .cmp-col {
+      padding: 40px 32px;
+      border-radius: 22px;
+      background: var(--c-bg-soft);
+    }
+    .cmp-col.cmp-blue {
+      background: linear-gradient(145deg, #f0f6ff 0%, #e6f0fd 100%);
+      border: 1px solid rgba(0,113,227,.12);
+    }
+    .cmp-lbl {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--c-mute);
+      margin-bottom: 28px;
+    }
+    .cmp-blue .cmp-lbl { color: var(--c-accent); }
+    .cmp-steps { display: flex; flex-direction: column; gap: 0; }
+    .cmp-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+    }
+    .cmp-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--c-border);
+      flex-shrink: 0;
+    }
+    .cmp-blue .cmp-dot { background: var(--c-accent); }
+    .cmp-step-text {
+      font-size: 15px;
+      color: var(--c-sub);
+    }
+    .cmp-blue .cmp-step-text {
+      color: var(--c-navy);
+      font-weight: 500;
+    }
+    .cmp-step-text.dim {
+      color: var(--c-border);
+      font-size: 14px;
+      font-style: italic;
+    }
+    .cmp-arr {
+      font-size: 13px;
+      color: var(--c-border);
+      padding: 2px 0 2px 20px;
+    }
+    .cmp-blue .cmp-arr { color: rgba(0,113,227,.4); }
+
+    /* ============================================
+       ABOUT SECTION
+    ============================================ */
+    #about { background: var(--c-bg-soft); }
+    .about-hl {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .about-hl h2 {
+      font-size: clamp(26px, 3.8vw, 50px);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -.02em;
+      margin-top: 18px;
+    }
+    .about-hl h2 .blue { color: var(--c-accent); }
+    .feat-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--c-border);
+      border-left: 1px solid var(--c-border);
+    }
+    .feat-item {
+      padding: 48px 24px;
+      text-align: center;
+      border-right: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .feat-num {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .12em;
+      color: var(--c-accent);
+      margin-bottom: 18px;
+    }
+    .feat-title {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--c-text);
+      margin-bottom: 12px;
+    }
+    .feat-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--c-mute);
+    }
+
+    /* ============================================
+       MICROSCOPE SECTION
+    ============================================ */
+    #scope {
+      background: var(--c-navy);
+      color: #fff;
+      padding: var(--sp) 0;
+    }
+    .scope-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+    .scope-txt .label { color: rgba(255,255,255,.4); margin-bottom: 28px; }
+    .scope-txt h2 {
+      font-size: clamp(32px, 4.5vw, 58px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+      margin-bottom: 36px;
+    }
+    .scope-txt p {
+      font-size: clamp(15px, 1.5vw, 18px);
+      font-weight: 300;
+      line-height: 2.1;
+      color: rgba(255,255,255,.68);
+      margin-bottom: 48px;
+    }
+    .scope-quote {
+      border-left: 2px solid rgba(255,255,255,.2);
+      padding-left: 24px;
+    }
+    .scope-quote q {
+      display: block;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,.82);
+      margin-bottom: 8px;
+      quotes: none;
+    }
+    .scope-quote cite {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: rgba(255,255,255,.35);
+      font-style: normal;
+    }
+    /* Visual placeholder */
+    .scope-vis {
+      position: relative;
+    }
+    .scope-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 28px;
+      background: linear-gradient(145deg,
+        rgba(255,255,255,.06) 0%,
+        rgba(255,255,255,.02) 100%);
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .scope-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 55% 45%,
+        rgba(0,113,227,.22) 0%, transparent 65%);
+    }
+    .scope-img-inner { position: relative; text-align: center; }
+    .scope-ring {
+      width: 128px; height: 128px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.2);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .scope-ring-in {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(0,113,227,.25);
+    }
+    .scope-img-cap {
+      font-family: var(--font-en);
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      line-height: 1.6;
+    }
+    .scope-badge {
+      position: absolute;
+      top: 22px; right: 22px;
+      background: rgba(0,113,227,.2);
+      border: 1px solid rgba(0,113,227,.35);
+      border-radius: 8px;
+      padding: 7px 13px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.75);
+    }
+
+    /* ============================================
+       TESTIMONIALS
+    ============================================ */
+    #voice {
+      background: var(--c-bg);
+      text-align: center;
+    }
+    .voice-hl {
+      margin-bottom: 80px;
+    }
+    .voice-hl h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -.02em;
+      margin-top: 18px;
+    }
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .voice-card {
+      padding: 48px 32px;
+      border-right: 1px solid var(--c-border);
+    }
+    .voice-card:last-child { border-right: none; }
+    .voice-q {
+      font-size: 42px;
+      color: var(--c-accent);
+      opacity: .22;
+      line-height: 1;
+      font-family: Georgia, serif;
+      margin-bottom: 12px;
+    }
+    .voice-text {
+      font-size: clamp(18px, 2vw, 23px);
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--c-text);
+      margin-bottom: 24px;
+    }
+    .voice-attr {
+      font-size: 12px;
+      color: var(--c-mute);
+      letter-spacing: .06em;
+      font-family: var(--font-en);
+    }
+
+    /* ============================================
+       PLANS SECTION
+    ============================================ */
+    #plans { background: var(--c-bg-soft); }
+    .plans-hl {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .plans-hl h2 {
+      font-size: clamp(28px, 3.8vw, 50px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-top: 18px;
+      margin-bottom: 16px;
+    }
+    .plans-hl p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--c-sub);
+    }
+
+    /* 価格直前の強調メッセージ */
+    .preprice-wrap {
+      background: var(--c-bg-soft);
+      padding: 80px 28px;
+    }
+    .preprice-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .preprice-text {
+      font-size: clamp(17px, 2vw, 22px);
+      font-weight: 300;
+      line-height: 2;
+      color: var(--c-text);
+      letter-spacing: .01em;
+    }
+    .preprice-text em {
+      font-style: normal;
+      font-weight: 500;
+      border-bottom: 1px solid var(--c-accent);
+      padding-bottom: 1px;
+      color: var(--c-text);
+    }
+    @media (max-width: 640px) {
+      .preprice-br { display: none; }
+      .preprice-text { font-size: 16px; line-height: 2.1; }
+    }
+
+    /* 価格の意味ブロック */
+    .price-meaning {
+      max-width: 600px;
+      margin: 0 auto 72px;
+      text-align: center;
+    }
+    .pm-title {
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 600;
+      color: var(--c-text);
+      letter-spacing: -.01em;
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+    .pm-body {
+      font-size: clamp(15px, 1.5vw, 17px);
+      font-weight: 300;
+      color: var(--c-sub);
+      line-height: 2.2;
+      margin-bottom: 28px;
+    }
+    .pm-body-last { margin-bottom: 0; }
+    .pm-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--c-border);
+      margin: 48px auto 0;
+    }
+
+    /* FIRST card */
+    .plan-first {
+      background: linear-gradient(155deg, #f5f9ff 0%, #eaf1fd 100%);
+      border: 1px solid rgba(0,113,227,.14);
+      border-radius: 28px;
+      padding: 64px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .plan-first::after {
+      content: '';
+      position: absolute;
+      top: -140px; right: -140px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,113,227,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .plan-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      background: var(--c-accent);
+      color: #fff;
+      border-radius: 980px;
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .plan-first-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .plan-en {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--c-accent);
+      margin-bottom: 12px;
+    }
+    .plan-name {
+      font-size: clamp(24px, 2.8vw, 36px);
+      font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 16px;
+      letter-spacing: -.01em;
+    }
+    .plan-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--c-sub);
+      line-height: 1.85;
+      margin-bottom: 36px;
+    }
+    .price-lbl {
+      font-family: var(--font-en);
+      font-size: 10px;
+      letter-spacing: .15em;
+      color: var(--c-mute);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .price {
+      font-family: var(--font-en);
+      font-size: clamp(32px, 3.8vw, 46px);
+      font-weight: 300;
+      color: var(--c-text);
+      letter-spacing: -.02em;
+    }
+    .price-tax {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--c-mute);
+      font-family: var(--font-jp);
+      margin-left: 4px;
+    }
+    .price-wrap { margin-bottom: 36px; }
+    .plan-list {
+      list-style: none;
+    }
+    .plan-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--c-sub);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    .plan-list li::before {
+      content: '✓';
+      color: var(--c-accent);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Secondary cards */
+    .plans-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .plan-card {
+      background: #fff;
+      border: 1px solid var(--c-border);
+      border-radius: 22px;
+      padding: 48px 40px;
+    }
+    .plan-card .plan-name { font-size: 26px; }
+    .plan-card .price { font-size: 34px; }
+
+    .plans-note {
+      margin-top: 28px;
+      padding: 18px 28px;
+      background: rgba(0,113,227,.04);
+      border-radius: 14px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--c-sub);
+    }
+    .plans-note strong { color: var(--c-accent); }
+
+    /* ============================================
+       TARGET SECTION
+    ============================================ */
+    #target { background: var(--c-bg); }
+    .target-hl {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .target-hl h2 {
+      font-size: clamp(28px, 3.8vw, 50px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-top: 18px;
+    }
+    .tgt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--c-border);
+      border: 1px solid var(--c-border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .tgt-item {
+      background: var(--c-bg);
+      padding: 44px 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .tgt-icon {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      color: var(--c-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tgt-icon svg { width: 22px; height: 22px; }
+    .tgt-item h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--c-text);
+      margin-bottom: 8px;
+    }
+    .tgt-item p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--c-mute);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       PHILOSOPHY SECTION
+    ============================================ */
+    #phil {
+      background: var(--c-bg-soft);
+      text-align: center;
+    }
+    .phil-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .phil-inner h2 {
+      font-size: clamp(32px, 4.5vw, 60px);
+      font-weight: 700;
+      line-height: 1.28;
+      letter-spacing: -.03em;
+      margin-top: 18px;
+      margin-bottom: 52px;
+    }
+    .phil-body {
+      font-size: clamp(16px, 1.6vw, 19px);
+      font-weight: 300;
+      line-height: 2.3;
+      color: var(--c-sub);
+      margin-bottom: 56px;
+    }
+    .phil-sig {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .phil-sig .sig-role {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--c-mute);
+    }
+    .phil-sig .sig-name {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--c-text);
+    }
+    .phil-sig .sig-clinic {
+      font-size: 12px;
+      color: var(--c-mute);
+    }
+
+    /* ============================================
+       FINAL CTA
+    ============================================ */
+    #cta {
+      background: var(--c-navy);
+      color: #fff;
+      text-align: center;
+    }
+    .cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-inner h2 {
+      font-size: clamp(36px, 5.5vw, 68px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -.03em;
+      margin-top: 18px;
+      margin-bottom: 44px;
+    }
+    .cta-body {
+      font-size: clamp(16px, 1.6vw, 19px);
+      font-weight: 300;
+      line-height: 2.3;
+      color: rgba(255,255,255,.62);
+      margin-bottom: 64px;
+    }
+    .cta-body strong {
+      color: rgba(255,255,255,.88);
+      font-weight: 400;
+    }
+    .cta-prog {
+      margin-bottom: 48px;
+    }
+    .cta-prog-lbl {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      font-family: var(--font-en);
+      margin-bottom: 6px;
+    }
+    .cta-prog-name {
+      font-family: var(--font-en);
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.88);
+    }
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    #foot {
+      background: #111;
+      padding: 64px 0 36px;
+    }
+    .foot-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      margin-bottom: 32px;
+    }
+    .foot-logo {
+      font-family: var(--font-en);
+      font-size: 17px;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+    }
+    .foot-clinic {
+      font-size: 13px;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 18px;
+    }
+    .foot-addr {
+      font-size: 13px;
+      line-height: 1.9;
+      color: rgba(255,255,255,.38);
+    }
+    .foot-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .foot-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .foot-links a:hover { color: #fff; }
+    .foot-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .foot-line-block {
+      margin-top: 24px;
+    }
+    .foot-line-label {
+      font-size: 12px;
+      color: rgba(255,255,255,.4);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .foot-line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #06c755;
+      color: #fff;
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 11px 22px;
+      border-radius: 980px;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+    }
+    .foot-line-btn:hover {
+      opacity: .88;
+      transform: translateY(-1px);
+    }
+    .foot-copy {
+      font-family: var(--font-en);
+      font-size: 11px;
+      color: rgba(255,255,255,.25);
+    }
+    .foot-disc {
+      font-size: 11px;
+      color: rgba(255,255,255,.22);
+      line-height: 1.65;
+      max-width: 480px;
+      text-align: right;
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 820px) {
+      :root { --sp: 80px; }
+      .hdr-nav { display: none; }
+      .ham { display: flex; }
+      #for-you .wrap > div:nth-child(2) { grid-template-columns: 1fr !important; }
+
+      .cmp-grid { grid-template-columns: 1fr; }
+
+      .feat-row { grid-template-columns: 1fr; }
+      .feat-item {
+        border-right: none;
+        border-bottom: 1px solid var(--c-border);
+        padding: 36px 24px;
+      }
+      .feat-item:last-child { border-bottom: none; }
+
+      .scope-inner { grid-template-columns: 1fr; gap: 52px; }
+      .scope-vis { order: -1; }
+
+      .voice-grid { grid-template-columns: 1fr; }
+      .voice-card {
+        border-right: none;
+        border-bottom: 1px solid var(--c-border);
+      }
+      .voice-card:last-child { border-bottom: none; }
+
+      .plan-first { padding: 36px 24px; }
+      .plan-first-grid { grid-template-columns: 1fr; gap: 36px; }
+      .plans-two { grid-template-columns: 1fr; }
+      .plan-card { padding: 36px 28px; }
+
+      .tgt-grid { grid-template-columns: 1fr; border-radius: 16px; }
+
+      .foot-top { grid-template-columns: 1fr; gap: 36px; }
+      .foot-links { align-items: flex-start; }
+      .foot-bottom { flex-direction: column; }
+      .foot-disc { text-align: left; max-width: 100%; }
+
+      .hero-btns { flex-direction: column; align-items: center; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 540px) {
+      .plan-first-grid { gap: 28px; }
+      .prob-hl { font-size: 28px; }
+      .hero-h1 { letter-spacing: -.015em; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER — 固定ナビゲーション
+============================================ -->
+<header id="hdr">
+  <div class="hdr-inner">
+    <a href="#hero" class="hdr-logo">Blue <em>Teeth</em> Program</a>
+    <nav class="hdr-nav">
+      <a href="#for-you">こんな方へ</a>
+      <a href="#about">プログラム</a>
+      <a href="#scope">体験</a>
+      <a href="#plans">料金</a>
+      <a href="#phil">想い</a>
+      <a href="#cta" class="btn btn-solid hdr-cta">お問い合わせ</a>
+    </nav>
+    <button class="ham" id="ham" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- モバイルメニュー -->
+<nav class="mob-nav" id="mobNav">
+  <a href="#for-you"   onclick="closeNav()">こんな方へ</a>
+  <a href="#about"     onclick="closeNav()">プログラムとは</a>
+  <a href="#scope"     onclick="closeNav()">マイクロスコープ体験</a>
+  <a href="#plans"     onclick="closeNav()">料金・プラン</a>
+  <a href="#target"    onclick="closeNav()">こんな方に</a>
+  <a href="#phil"      onclick="closeNav()">クリニックの想い</a>
+  <a href="#cta"       onclick="closeNav()">お問い合わせ・予約</a>
+</nav>
+
+
+<!-- ============================================
+     HERO — ファーストビュー
+============================================ -->
+<section id="hero">
+
+  <p class="hero-eyebrow fi">Monte Orthodontic Clinic</p>
+
+  <h1 class="hero-h1 fi d1">
+    歯の未来を、<br>はじめて可視化する。
+  </h1>
+
+  <p class="hero-program fi d2">Blue Teeth Program</p>
+
+  <p class="hero-sub fi d3">
+    ただ歯をきれいにするのではなく、<br>
+    10年後・20年後の歯を守るためのプログラム。
+  </p>
+
+  <div class="hero-btns fi d4">
+    <a href="#about" class="btn btn-solid">詳しく見る</a>
+    <a href="#cta"   class="btn btn-outline">相談・お問い合わせ</a>
+  </div>
+
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOR YOU — こんな方へ
+============================================ -->
+<section id="for-you">
+  <div class="wrap">
+
+    <!-- 見出し -->
+    <div class="fy-head fi">
+      <span class="label">For You</span>
+      <h2 class="fy-title">こんな方へ。</h2>
+      <p class="fy-sub">
+        Blue Teeth Program は、<br>
+        その場をきれいにするためではなく、<br>
+        歯の未来を守るための体験です。
+      </p>
+    </div>
+
+    <!-- カード 3列 × 2段 -->
+    <div class="fy-grid">
+
+      <div class="fy-card fi d1">
+        <span class="fy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </span>
+        <h3 class="fy-card-title">歯を長く守りたい</h3>
+        <p class="fy-card-desc">今ある歯を、一本でも長く健康に保ちたい方</p>
+      </div>
+
+      <div class="fy-card fi d2">
+        <span class="fy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </span>
+        <h3 class="fy-card-title">繰り返したくない</h3>
+        <p class="fy-card-desc">治療を繰り返す流れから抜け出したい方</p>
+      </div>
+
+      <div class="fy-card fi d3">
+        <span class="fy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </span>
+        <h3 class="fy-card-title">本質を理解したい</h3>
+        <p class="fy-card-desc">自分の口の中を、感覚でなく事実として知りたい方</p>
+      </div>
+
+      <div class="fy-card fi d1">
+        <span class="fy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </span>
+        <h3 class="fy-card-title">本質的な健康</h3>
+        <p class="fy-card-desc">審美だけでなく、将来まで見据えた健康を大切にしたい方</p>
+      </div>
+
+      <div class="fy-card fi d2">
+        <span class="fy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </span>
+        <h3 class="fy-card-title">子どもの歯の未来</h3>
+        <p class="fy-card-desc">お子さまの歯も、悪くなる前に守りたいと考える方</p>
+      </div>
+
+      <div class="fy-card fi d3">
+        <span class="fy-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </span>
+        <h3 class="fy-card-title">価値で選ぶ</h3>
+        <p class="fy-card-desc">「安い・高い」ではなく、本質的な価値で選びたい方</p>
+      </div>
+
+    </div><!-- /.fy-grid -->
+  </div>
+</section>
+
+
+<!-- ============================================
+     PROBLEM — 問題提起
+============================================ -->
+<section id="problem">
+  <div class="wrap">
+    <div class="prob-copy-block">
+      <h2 class="prob-hl fi">
+        ただ、きれいにするだけでは。<br>
+        歯は、守れない。
+      </h2>
+
+      <div class="prob-lines fi d1">
+        <p class="prob-line">見えていないものがある。</p>
+        <p class="prob-line">積み重なってきた<strong>治療の歴史</strong>。</p>
+        <p class="prob-line">これから起こりうる<strong>変化と兆候</strong>。</p>
+        <p class="prob-line">そして、守るための<strong>本当の選択肢</strong>。</p>
+        <br>
+        <p class="prob-line accent">
+          そのすべてを知ることが、<br>本当のスタートです。
+        </p>
+      </div>
+    </div>
+
+    <!-- 比較図 -->
+    <div class="cmp-wrap">
+      <div class="cmp-title fi d2">
+        <span class="label">The Difference</span>
+      </div>
+      <div class="cmp-grid fi d3">
+
+        <!-- 一般歯科 -->
+        <div class="cmp-col">
+          <p class="cmp-lbl">Ordinary Dental</p>
+          <div class="cmp-steps">
+            <div class="cmp-step">
+              <div class="cmp-dot"></div>
+              <span class="cmp-step-text">クリーニング</span>
+            </div>
+            <div class="cmp-arr">↓</div>
+            <div class="cmp-step">
+              <div class="cmp-dot"></div>
+              <span class="cmp-step-text dim">終了</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blue Teeth -->
+        <div class="cmp-col cmp-blue">
+          <p class="cmp-lbl">Blue Teeth Program</p>
+          <div class="cmp-steps">
+            <div class="cmp-step">
+              <div class="cmp-dot"></div>
+              <span class="cmp-step-text">現状を知る</span>
+            </div>
+            <div class="cmp-arr">↓</div>
+            <div class="cmp-step">
+              <div class="cmp-dot"></div>
+              <span class="cmp-step-text">過去の治療を知る</span>
+            </div>
+            <div class="cmp-arr">↓</div>
+            <div class="cmp-step">
+              <div class="cmp-dot"></div>
+              <span class="cmp-step-text">歯の未来を知る</span>
+            </div>
+            <div class="cmp-arr">↓</div>
+            <div class="cmp-step">
+              <div class="cmp-dot"></div>
+              <span class="cmp-step-text">価値に気づく</span>
+            </div>
+            <div class="cmp-arr">↓</div>
+            <div class="cmp-step">
+              <div class="cmp-dot"></div>
+              <span class="cmp-step-text">歯を守りたくなる</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     ABOUT — Blue Teeth Programとは
+============================================ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-hl">
+      <span class="label fi">About the Program</span>
+      <h2 class="fi d1">
+        これは、クリーニングではありません。<br>
+        <span class="blue">歯の未来設計プログラムです。</span>
+      </h2>
+    </div>
+
+    <div class="feat-row">
+      <div class="feat-item fi d1">
+        <p class="feat-num">01</p>
+        <h3 class="feat-title">歯の状態を<br>知る</h3>
+        <p class="feat-desc">現在の口腔内の正確な状態を、精密機器で可視化します。</p>
+      </div>
+      <div class="feat-item fi d2">
+        <p class="feat-num">02</p>
+        <h3 class="feat-title">過去の治療を<br>知る</h3>
+        <p class="feat-desc">これまでの治療履歴と、その影響を丁寧に読み解きます。</p>
+      </div>
+      <div class="feat-item fi d3">
+        <p class="feat-num">03</p>
+        <h3 class="feat-title">歯の未来を<br>知る</h3>
+        <p class="feat-desc">今の状態から考えられる将来のリスクと可能性をお伝えします。</p>
+      </div>
+      <div class="feat-item fi d4">
+        <p class="feat-num">04</p>
+        <h3 class="feat-title">価値に<br>気づく</h3>
+        <p class="feat-desc">自分の歯を、初めて「本当に大切なもの」として感じる体験。</p>
+      </div>
+      <div class="feat-item fi d5">
+        <p class="feat-num">05</p>
+        <h3 class="feat-title">歯を守りたく<br>なる</h3>
+        <p class="feat-desc">知ることで、自然と行動が変わります。それがゴールです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     DIFFERENCE — 比較セクション
+============================================ -->
+<section id="difference">
+  <div class="wrap">
+
+    <!-- 見出しブロック -->
+    <div class="diff-head fi">
+      <span class="label">The Difference</span>
+      <h2 class="diff-title">
+        ただ、きれいにするだけでは。<br>
+        歯は、守れない。
+      </h2>
+      <p class="diff-sub">
+        見えていないものがある。<br>
+        積み重なってきた治療の歴史。<br>
+        これから起こりうる変化と兆候。<br>
+        そして、守るための本当の選択肢。<br>
+        <strong>そのすべてを知ることが、本当のスタートです。</strong>
+      </p>
+    </div>
+
+    <!-- 左右カラム比較 -->
+    <div class="diff-cols">
+
+      <!-- 左：一般的なクリーニング -->
+      <div class="diff-col diff-col-left fi d1">
+        <p class="diff-col-label">一般的なクリーニング</p>
+        <ul class="diff-list">
+          <li class="diff-item">表面の汚れを落とす</li>
+          <li class="diff-item">いま見えている範囲を整える</li>
+          <li class="diff-item">その日の爽快感で終わる</li>
+          <li class="diff-item">未来のリスクまでは見えにくい</li>
+        </ul>
+        <p class="diff-end-label">終了</p>
+      </div>
+
+      <!-- 区切り -->
+      <div class="diff-divider fi d2">
+        <div class="diff-divider-line"></div>
+        <span class="diff-vs">vs</span>
+        <div class="diff-divider-line"></div>
+      </div>
+
+      <!-- 右：Blue Teeth Program -->
+      <div class="diff-col diff-col-right fi d3">
+        <p class="diff-col-label">Blue Teeth Program</p>
+        <ul class="diff-list diff-list-blue">
+          <li class="diff-item">現状を知る</li>
+          <li class="diff-arr">↓</li>
+          <li class="diff-item">過去の治療を知る</li>
+          <li class="diff-arr">↓</li>
+          <li class="diff-item">歯の未来を知る</li>
+          <li class="diff-arr">↓</li>
+          <li class="diff-item">価値に気づく</li>
+          <li class="diff-arr">↓</li>
+          <li class="diff-item diff-item-last">歯を守りたくなる</li>
+        </ul>
+        <a href="#cta" class="btn btn-solid" style="margin-top:32px; display:inline-block;">
+          プログラムを相談する
+        </a>
+      </div>
+
+    </div><!-- /.diff-cols -->
+  </div>
+</section>
+
+
+<!-- ============================================
+     SCOPE — マイクロスコープ体験
+============================================ -->
+<section id="scope">
+  <div class="wrap">
+    <div class="scope-inner">
+
+      <div class="scope-txt">
+        <span class="label fi">Microscope Experience</span>
+        <h2 class="fi d1">
+          見えなかったものが、<br>
+          見える。
+        </h2>
+        <p class="fi d2">
+          百聞は一見に如かず。<br>
+          マイクロスコープによって、<br>
+          肉眼では気づけなかった事実が、<br>
+          はじめて「自分ごと」になります。
+        </p>
+        <div class="scope-quote fi d3">
+          <q>こんな状態だったんですか。</q>
+          <cite>— Patient Voice</cite>
+        </div>
+        <p style="margin-top: 40px; font-size: 15px; font-weight: 300;
+                  line-height: 2.1; color: rgba(255,255,255,.55);"
+           class="fi d4">
+          見ることは、知ることです。<br>
+          知ることは、変わることのはじまりです。
+        </p>
+      </div>
+
+      <!-- 画像プレースホルダー（実写と差し替え可） -->
+      <div class="scope-vis fi d2">
+        <div class="scope-img">
+          <span class="scope-badge">× 20 Magnification</span>
+          <div class="scope-img-inner">
+            <div class="scope-ring">
+              <div class="scope-ring-in"></div>
+            </div>
+            <p class="scope-img-cap">
+              MICROSCOPE IMAGE<br>
+              <span style="opacity:.5; font-size:.9em;">Replace with actual photo</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     VOICE — 患者の声
+============================================ -->
+<section id="voice">
+  <div class="wrap">
+    <div class="voice-hl fi">
+      <span class="label">Patient Voices</span>
+      <h2>
+        その体験は、<br>
+        意識を変える。
+      </h2>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card fi d1">
+        <p class="voice-q">"</p>
+        <p class="voice-text">もっと早く<br>知りたかった。</p>
+        <p class="voice-attr">40s / Executive</p>
+      </div>
+      <div class="voice-card fi d2">
+        <p class="voice-q">"</p>
+        <p class="voice-text">今後はちゃんと<br>守りたいと思えた。</p>
+        <p class="voice-attr">30s / Physician</p>
+      </div>
+      <div class="voice-card fi d3">
+        <p class="voice-q">"</p>
+        <p class="voice-text">子どもにも<br>受けさせたい。</p>
+        <p class="voice-attr">40s / Business Owner</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PRE-PRICE — 価格直前の強調メッセージ
+============================================ -->
+<div class="preprice-wrap">
+  <div class="preprice-inner fi">
+    <p class="preprice-text">
+      これは、歯をきれいにするための費用ではなく、<br class="preprice-br">
+      これからの歯を守るための<em>「判断材料」</em>を手に入れる時間です。
+    </p>
+  </div>
+</div>
+
+
+<!-- ============================================
+     PLANS — プログラム一覧
+============================================ -->
+<section id="plans">
+  <div class="wrap">
+    <div class="plans-hl">
+      <span class="label fi">Programs</span>
+      <h2 class="fi d1">選べる体験、<br>変わらない本質。</h2>
+      <p class="fi d2">それぞれのライフスタイルに合わせた、3つのプログラム。</p>
+    </div>
+
+    <!-- 価格の意味を伝える説明ブロック -->
+    <div class="price-meaning fi">
+      <h3 class="pm-title">これは、クリーニング費用ではありません。</h3>
+      <p class="pm-body">
+        いまの汚れを落とすだけでなく、<br>
+        あなたの歯の現在地を知り、<br>
+        未来のリスクを見つけ、<br>
+        これからどう守っていくかを考えるための、<br>
+        時間と体験への投資です。
+      </p>
+      <p class="pm-body">
+        もっと早く知りたかった。<br>
+        その後悔を、少しでも減らしたい。
+      </p>
+      <p class="pm-body pm-body-last">
+        歯は、悪くなってから治すより、<br>
+        悪くなる前に気づき、守るほうが、<br>
+        はるかに大きな価値があります。
+      </p>
+      <div class="pm-rule"></div>
+    </div>
+
+    <!-- ① FIRST — 最上位 -->
+    <div class="plan-first fi">
+      <span class="plan-badge">Most Comprehensive</span>
+      <div class="plan-first-grid">
+
+        <div>
+          <p class="plan-en">Blue Teeth Program</p>
+          <h3 class="plan-name">FIRST</h3>
+          <p class="plan-desc">
+            歯の未来設計プログラム。<br>
+            精密分析・現状説明・<br>未来への提案を含む最上位体験。
+          </p>
+          <div class="price-wrap">
+            <p class="price-lbl">Program Fee</p>
+            <span class="price">¥220,000</span>
+            <span class="price-tax">（税込）</span>
+          </div>
+          <a href="#cta" class="btn btn-solid">このプログラムを相談する</a>
+        </div>
+
+        <div>
+          <ul class="plan-list">
+            <li>資料採得・口腔内写真・顔面写真</li>
+            <li>パノラマ撮影</li>
+            <li>歯科用CBCT撮影</li>
+            <li>セファロ撮影</li>
+            <li>デンタル10枚法</li>
+            <li>現状説明・今後起こりうる歯のトラブル解説</li>
+            <li>考えられるベストな治療法の説明</li>
+            <li>現状を変えるための行動提案</li>
+            <li>青色染色による染め出し</li>
+            <li>マイクロスコープによる拡大と現状解説</li>
+            <li>EMSエアフロー</li>
+            <li>歯磨き完全攻略トレーニング</li>
+            <li>むし歯・つめもの・歯茎・汚れ・出血状態の解説</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ② Premium + ③ Standard -->
+    <div class="plans-two">
+
+      <div class="plan-card fi d1">
+        <p class="plan-en">Blue Teeth</p>
+        <h3 class="plan-name">Premium</h3>
+        <p class="plan-desc">
+          歯の状態を深く理解し、<br>守り方まで学ぶプレミアムメンテナンス。
+        </p>
+        <div class="price-wrap">
+          <p class="price-lbl">Program Fee</p>
+          <span class="price">¥55,000</span>
+          <span class="price-tax">（税込）</span>
+        </div>
+        <ul class="plan-list" style="margin-bottom: 32px;">
+          <li>青色染色による染め出し</li>
+          <li>マイクロスコープによる拡大と現状解説</li>
+          <li>EMSエアフロー</li>
+          <li>歯磨き完全攻略トレーニング</li>
+          <li>むし歯・つめもの・歯茎状態の説明</li>
+          <li>汚れ・腫れ・出血状態の解説</li>
+          <li>プロケア用リナメルトリートメント</li>
+        </ul>
+        <a href="#cta" class="btn-arrow">相談する</a>
+      </div>
+
+      <div class="plan-card fi d2">
+        <p class="plan-en">Blue Teeth</p>
+        <h3 class="plan-name">Standard</h3>
+        <p class="plan-desc">
+          青色染色＋EMSエアフローによる<br>見える化メンテナンス。
+        </p>
+        <div class="price-wrap">
+          <p class="price-lbl">Program Fee</p>
+          <span class="price">¥33,000</span>
+          <span class="price-tax">（税込）</span>
+        </div>
+        <ul class="plan-list" style="margin-bottom: 32px;">
+          <li>青色染色による染め出し</li>
+          <li>EMSエアフロー</li>
+          <li>バイオフィルム・ステイン・早期歯石除去</li>
+          <li>歯肉縁上・縁下からの完全リセット</li>
+        </ul>
+        <a href="#cta" class="btn-arrow">相談する</a>
+      </div>
+
+    </div>
+
+    <!-- 矯正患者向け注記 -->
+    <p class="plans-note fi">
+      <strong>当院で矯正治療中の患者様は、Blue Teeth Standard を無料でお受けいただけます。</strong>
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     TARGET — こんな方におすすめ
+============================================ -->
+<section id="target">
+  <div class="wrap">
+    <div class="target-hl fi">
+      <span class="label">For You</span>
+      <h2>こういう方のために。</h2>
+    </div>
+
+    <div class="tgt-grid">
+
+      <div class="tgt-item fi d1">
+        <div class="tgt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>長く守りたい</h3>
+          <p>今ある歯を一本でも長く、<br>健康に保ちたい方</p>
+        </div>
+      </div>
+
+      <div class="tgt-item fi d2">
+        <div class="tgt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div>
+          <h3>繰り返したくない</h3>
+          <p>治療を繰り返す循環から、<br>抜け出したい方</p>
+        </div>
+      </div>
+
+      <div class="tgt-item fi d3">
+        <div class="tgt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <div>
+          <h3>本質を理解したい</h3>
+          <p>自分の口の中を、<br>正確に理解したい方</p>
+        </div>
+      </div>
+
+      <div class="tgt-item fi d1">
+        <div class="tgt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>本質的な健康</h3>
+          <p>審美だけでなく、本質的な<br>口腔の健康を大切にしたい方</p>
+        </div>
+      </div>
+
+      <div class="tgt-item fi d2">
+        <div class="tgt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <h3>子どもの歯の未来</h3>
+          <p>お子さまの歯の未来も、<br>大切に守りたい方</p>
+        </div>
+      </div>
+
+      <div class="tgt-item fi d3">
+        <div class="tgt-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div>
+          <h3>価値で選ぶ</h3>
+          <p>「高い安い」でなく、<br>本質的な価値で判断される方</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PHILOSOPHY — クリニックの想い
+============================================ -->
+<section id="phil">
+  <div class="wrap">
+    <div class="phil-inner">
+      <span class="label fi">Our Philosophy</span>
+      <h2 class="fi d1">
+        歯の価値に、<br>
+        気づく場所へ。
+      </h2>
+      <p class="phil-body fi d2">
+        歯が、人生の質を変える。<br><br>
+        まだ多くの人が、歯の本当の価値に<br>
+        気づいていません。<br><br>
+        知ること。気づくこと。守ること。<br>
+        その体験を、すべての人に届けたい。<br><br>
+        モンテ矯正歯科クリニックは、<br>
+        「歯の価値文化をつくる」ために、<br>
+        ここに在り続けます。
+      </p>
+      <div class="phil-sig fi d3">
+        <span class="sig-role">Chief Orthodontist</span>
+        <span class="sig-name">モンテ矯正歯科クリニック　院長</span>
+        <span class="sig-clinic">Monte Orthodontic Clinic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FINAL CTA — 最後のメッセージと問い合わせ
+============================================ -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-inner">
+      <span class="label" style="color:rgba(255,255,255,.35);" class="fi">Take the First Step</span>
+      <h2 class="fi d1">
+        その後悔を、<br>
+        なくしたい。
+      </h2>
+      <p class="cta-body fi d2">
+        歯を失った人は、<br>
+        必ずと言っていいほど、こう言います。<br><br>
+        <strong>「もっと早く知りたかった」と。</strong><br><br>
+        Blue Teeth Program は、<br>
+        歯の未来を知るための体験です。<br>
+        まず、知ることからはじめてください。
+      </p>
+      <div class="cta-prog fi d3">
+        <p class="cta-prog-lbl">歯の未来を知るプログラム</p>
+        <p class="cta-prog-name">Blue Teeth Program</p>
+      </div>
+      <div class="cta-btns fi d4">
+        <a href="https://line.me/R/ti/p/@796omjow" target="_blank" rel="noopener" class="btn btn-white">
+          LINEで予約・相談する
+        </a>
+        <a href="https://line.me/R/ti/p/@796omjow" target="_blank" rel="noopener" class="btn btn-white-ghost">
+          プログラムについて問い合わせる
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOOTER
+============================================ -->
+<footer id="foot">
+  <div class="wrap-wide">
+    <div class="foot-top">
+      <div>
+        <p class="foot-logo">Blue Teeth Program</p>
+        <p class="foot-clinic" style="margin-bottom:4px;">運営</p>
+        <p class="foot-clinic">医療法人ICC<br>モンテ矯正歯科クリニック</p>
+        <p class="foot-addr">
+          〒813-0044<br>
+          福岡市東区千早5-13-1-2F<br><br>
+          診療時間<br>
+          平日 10:30〜17:30<br>
+          土曜 9:30〜16:00<br>
+          定休日 不定休
+        </p>
+        <!-- LINE相談導線 -->
+        <div class="foot-line-block">
+          <p class="foot-line-label">ご相談・ご予約はLINEよりお願いいたします</p>
+          <a href="https://line.me/R/ti/p/@796omjow"
+             target="_blank" rel="noopener"
+             class="foot-line-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+              <path fill="currentColor" d="M12 2C6.48 2 2 6.03 2 11c0 3.04 1.68 5.73 4.28 7.44-.18.67-.65 2.44-.75 2.81-.12.47.17.97.66.97.12 0 .23-.03.33-.1l3.32-2.17c.72.12 1.46.18 2.16.18 5.52 0 10-4.03 10-9 0-4.97-4.48-9-10-9z"/>
+            </svg>
+            LINE相談はこちら
+          </a>
+        </div>
+      </div>
+      <div class="foot-links">
+        <a href="#hero">トップ</a>
+        <a href="#about">プログラムについて</a>
+        <a href="#plans">料金・メニュー</a>
+        <a href="https://line.me/R/ti/p/@796omjow" target="_blank" rel="noopener">LINE予約・相談</a>
+        <a href="https://www.instagram.com/monte_orthodontic_clinic?igsh=NHY0b3p0aHZxdTNu&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+        <a href="#">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">© 2025 Monte Orthodontic Clinic. All rights reserved.</p>
+      <p class="foot-disc">
+        ※本サイトに記載の内容は一般的な情報提供を目的としており、
+        医療行為の勧誘・診断を行うものではありません。
+        個別の症状については、必ずご担当の医師にご相談ください。
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================
+     LINE フローティングボタン
+============================================ -->
+<a href="https://line.me/R/ti/p/@796omjow"
+   target="_blank" rel="noopener"
+   id="line-fab"
+   aria-label="LINEで予約・相談する">
+  <!-- LINE公式アイコン（SVG） -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28" height="28">
+    <path fill="#fff" d="M24 4C12.95 4 4 11.99 4 21.77c0 5.86 3.27 11.05 8.3 14.36-.36 1.34-1.3 4.87-1.49 5.62-.23.94.34 1.93 1.31 1.93.23 0 .46-.07.66-.2l6.63-4.33c1.47.25 2.99.38 4.59.38 11.05 0 20-7.99 20-17.77C44 11.99 35.05 4 24 4z"/>
+    <path fill="#06c755" d="M24 4C12.95 4 4 11.99 4 21.77c0 5.86 3.27 11.05 8.3 14.36-.36 1.34-1.3 4.87-1.49 5.62-.23.94.34 1.93 1.31 1.93.23 0 .46-.07.66-.2l6.63-4.33c1.47.25 2.99.38 4.59.38 11.05 0 20-7.99 20-17.77C44 11.99 35.05 4 24 4z"/>
+    <path fill="#fff" d="M35.56 24.18h-4.44v-7.1a.67.67 0 0 0-.67-.67h-1.78a.67.67 0 0 0-.67.67v9.55c0 .37.3.67.67.67h6.89a.67.67 0 0 0 .67-.67v-1.78a.67.67 0 0 0-.67-.67zm-19.56 2.45h6.89a.67.67 0 0 0 .67-.67v-1.78a.67.67 0 0 0-.67-.67H17.78v-1.56h4.44a.67.67 0 0 0 .67-.67v-1.78a.67.67 0 0 0-.67-.67H17.78v-1.56h4.44a.67.67 0 0 0 .67-.67v-1.78a.67.67 0 0 0-.67-.67H16a.67.67 0 0 0-.67.67v9.55c0 .37.3.67.67.67zm9.11-10.22h-1.78a.67.67 0 0 0-.67.67v9.55c0 .37.3.67.67.67h1.78a.67.67 0 0 0 .67-.67v-9.55a.67.67 0 0 0-.67-.67z"/>
+  </svg>
+  <span>LINE相談</span>
+</a>
+
+<style>
+  #line-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #06c755;
+    color: #fff;
+    font-family: var(--font-jp);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 20px 12px 14px;
+    border-radius: 980px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(6,199,85,.35);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  #line-fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(6,199,85,.45);
+  }
+  @media (max-width: 540px) {
+    #line-fab { bottom: 20px; right: 20px; padding: 11px 16px 11px 12px; font-size: 12px; }
+  }
+</style>
+
+<!-- ============================================
+     JavaScript — スクロール演出・ナビゲーション
+============================================ -->
+<script>
+  // ── Header: スクロールで背景を付ける
+  const hdr = document.getElementById('hdr');
+  const onScroll = () =>
+    hdr.classList.toggle('solid', window.scrollY > 36);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Hamburger menu
+  const ham    = document.getElementById('ham');
+  const mobNav = document.getElementById('mobNav');
+  ham.addEventListener('click', () => mobNav.classList.toggle('open'));
+  function closeNav() { mobNav.classList.remove('open'); }
+
+  // ── Intersection Observer: フェードイン
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+  // ── Hero: ページ読み込み後に即アニメーション
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#hero .fi').forEach((el, i) => {
+      setTimeout(() => el.classList.add('on'), 100 + i * 130);
+    });
+  });
+
+  // ── スムーズスクロール（ヘッダー高さ分オフセット）
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.pageYOffset - 54;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
