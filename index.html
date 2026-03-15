@@ -6,7 +6,7 @@
   <title>Blue Teeth Program | モンテ矯正歯科クリニック</title>
   <meta
     name="description"
-    content="歯の未来を知る体験。Blue Teeth Programは、歯の現状を丸裸にし、未来のリスクまで可視化する精密分析プログラムです。"
+    content="歯の未来を知る体験。Blue Teeth Programは、歯の現状を丸裸にし、未来リスクまで可視化する精密分析プログラムです。"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,7 +28,7 @@
       --blue-soft: #e8f1fd;
       --max: 1160px;
       --radius: 28px;
-      --shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
       --font-en: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
       --font-jp: "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -47,7 +47,7 @@
       font-family: var(--font-jp);
       color: var(--text);
       background: var(--bg);
-      line-height: 1.8;
+      line-height: 1.85;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -67,6 +67,10 @@
       margin: 0 auto;
     }
 
+    .section {
+      padding: 110px 0;
+    }
+
     .eyebrow {
       font-family: var(--font-en);
       font-size: 12px;
@@ -76,8 +80,8 @@
       margin-bottom: 18px;
     }
 
-    .section {
-      padding: 110px 0;
+    .center {
+      text-align: center;
     }
 
     .btn {
@@ -91,6 +95,7 @@
       transition: 0.25s ease;
       cursor: pointer;
       border: none;
+      white-space: nowrap;
     }
 
     .btn-primary {
@@ -133,7 +138,6 @@
       background: rgba(255,255,255,.08);
     }
 
-    /* header */
     .header {
       position: fixed;
       inset: 0 0 auto 0;
@@ -150,6 +154,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
     }
 
     .logo {
@@ -168,6 +173,7 @@
       display: flex;
       gap: 24px;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav a {
@@ -184,7 +190,6 @@
       font-size: 13px;
     }
 
-    /* hero */
     .hero {
       min-height: 100svh;
       display: flex;
@@ -199,16 +204,16 @@
       width: min(1240px, calc(100% - 40px));
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 70px;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 64px;
       align-items: center;
       padding: 80px 0;
     }
 
     .hero-copy h1 {
-      font-size: clamp(42px, 7vw, 84px);
+      font-size: clamp(42px, 7vw, 86px);
       line-height: 1.08;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.045em;
       margin-bottom: 24px;
       font-weight: 700;
     }
@@ -224,7 +229,7 @@
 
     .hero-copy p {
       color: var(--sub);
-      font-size: clamp(16px, 1.8vw, 20px);
+      font-size: clamp(17px, 1.9vw, 21px);
       line-height: 2;
       max-width: 560px;
       margin-bottom: 34px;
@@ -259,13 +264,13 @@
       position: absolute;
       right: -18px;
       bottom: 24px;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.94);
       backdrop-filter: blur(18px);
       border: 1px solid rgba(0,0,0,.06);
       border-radius: 22px;
       padding: 18px 20px;
       box-shadow: var(--shadow);
-      max-width: 280px;
+      max-width: 300px;
     }
 
     .hero-float small {
@@ -281,34 +286,48 @@
     .hero-float strong {
       display: block;
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.65;
       font-weight: 600;
       color: var(--navy);
     }
 
-    /* intro */
-    .intro {
-      text-align: center;
-      background: var(--bg);
+    .intro h2,
+    .difference-head h2,
+    .feature-head h2,
+    .risk-head h2,
+    .scope-copy h2,
+    .plans-head h2,
+    .philosophy h2,
+    .cta h2 {
+      font-size: clamp(30px, 4vw, 58px);
+      line-height: 1.28;
+      letter-spacing: -0.035em;
     }
 
-    .intro h2 {
-      font-size: clamp(30px, 4vw, 56px);
-      line-height: 1.3;
-      letter-spacing: -0.03em;
-      margin-bottom: 26px;
-    }
-
-    .intro p {
-      max-width: 760px;
-      margin: 0 auto;
-      color: var(--sub);
+    .intro p,
+    .difference-head p,
+    .feature-head p,
+    .risk-head p,
+    .plans-head p,
+    .philosophy p,
+    .cta p {
       font-size: 18px;
+      color: var(--sub);
       font-weight: 300;
       line-height: 2.1;
     }
 
-    /* cards */
+    .intro p,
+    .difference-head p,
+    .feature-head p,
+    .risk-head p,
+    .philosophy p,
+    .cta p {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -329,22 +348,25 @@
     }
 
     .card p {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--sub);
       line-height: 1.9;
       font-weight: 300;
     }
 
-    /* split section */
-    .split {
+    .difference {
       background: var(--bg-soft);
     }
 
-    .split-inner {
+    .difference-head {
+      text-align: center;
+      margin-bottom: 46px;
+    }
+
+    .difference-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 22px;
-      align-items: stretch;
     }
 
     .panel {
@@ -368,14 +390,14 @@
     .panel ul {
       list-style: none;
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     .panel li {
       font-size: 15px;
       color: var(--sub);
       border-bottom: 1px solid rgba(0,0,0,.05);
-      padding-bottom: 10px;
+      padding-bottom: 12px;
     }
 
     .panel.blue li {
@@ -383,41 +405,121 @@
       font-weight: 500;
     }
 
-    /* microscope */
-    .microscope {
+    .feature-head,
+    .risk-head,
+    .plans-head {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .feature-item {
+      background: #fff;
+      padding: 34px 22px;
+      text-align: center;
+    }
+
+    .feature-num {
+      font-family: var(--font-en);
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: .14em;
+      margin-bottom: 14px;
+    }
+
+    .feature-item h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .feature-item p {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .risk {
+      background: var(--bg-soft);
+    }
+
+    .risk-flex {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .risk-image {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+
+    .risk-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .risk-copy h3 {
+      font-size: 28px;
+      line-height: 1.45;
+      margin-bottom: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .risk-copy p {
+      font-size: 17px;
+      line-height: 2.05;
+      color: var(--sub);
+      font-weight: 300;
+      margin-bottom: 18px;
+    }
+
+    .risk-copy strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .scope {
       background: var(--navy);
       color: #fff;
     }
 
-    .microscope-inner {
+    .scope-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 70px;
       align-items: center;
     }
 
-    .microscope-copy h2 {
-      font-size: clamp(34px, 4.6vw, 62px);
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-    }
-
-    .microscope-copy p {
+    .scope-copy p {
       color: rgba(255,255,255,.72);
       font-size: 17px;
       line-height: 2.1;
       font-weight: 300;
-      margin-bottom: 24px;
+      margin-top: 24px;
     }
 
-    .microscope-grid {
+    .scope-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
-    .microscope-main {
+    .scope-main {
       grid-column: 1 / -1;
       border-radius: 28px;
       overflow: hidden;
@@ -426,14 +528,7 @@
       border: 1px solid rgba(255,255,255,.12);
     }
 
-    .microscope-main img,
-    .microscope-sub img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .microscope-sub {
+    .scope-sub {
       border-radius: 22px;
       overflow: hidden;
       aspect-ratio: 1 / 1;
@@ -441,32 +536,20 @@
       border: 1px solid rgba(255,255,255,.12);
     }
 
-    /* plans */
+    .scope-main img,
+    .scope-sub img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .plans {
       background: var(--bg-soft);
     }
 
-    .plans-head {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .plans-head h2 {
-      font-size: clamp(30px, 4vw, 54px);
-      line-height: 1.3;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-
-    .plans-head p {
-      font-size: 17px;
-      color: var(--sub);
-      font-weight: 300;
-    }
-
     .price-note {
-      max-width: 700px;
-      margin: 0 auto 60px;
+      max-width: 720px;
+      margin: 0 auto 56px;
       text-align: center;
       font-size: 17px;
       line-height: 2.1;
@@ -479,7 +562,7 @@
       border: 1px solid rgba(0,113,227,.14);
       border-radius: 32px;
       padding: 54px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .plan-featured-grid {
@@ -553,36 +636,76 @@
       padding-bottom: 10px;
     }
 
-    .plan-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .plan-box {
+    .plans-compare {
+      margin-top: 20px;
       background: #fff;
       border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 42px 34px;
+      border-radius: 28px;
+      overflow: hidden;
     }
 
-    .plan-box h3 {
+    .compare-head,
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1.55fr 0.8fr 0.8fr;
+      align-items: center;
+    }
+
+    .compare-head {
+      background: var(--bg-soft);
+    }
+
+    .compare-plan {
+      padding: 28px 20px;
+      text-align: center;
+      border-left: 1px solid var(--line);
+    }
+
+    .compare-plan h3 {
       font-size: 28px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
     }
 
-    .plan-box p {
-      color: var(--sub);
-      font-size: 15px;
-      line-height: 1.9;
-      font-weight: 300;
-      margin-bottom: 22px;
+    .compare-plan-premium {
+      background: linear-gradient(145deg, #eef5ff 0%, #e8f1fd 100%);
     }
 
-    .plan-box .mini-price {
+    .compare-price {
       font-family: var(--font-en);
-      font-size: 34px;
-      margin-bottom: 24px;
+      font-size: 32px;
+      color: var(--text);
+    }
+
+    .compare-price span {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      color: var(--sub);
+      margin-left: 6px;
+    }
+
+    .compare-row {
+      border-top: 1px solid var(--line);
+    }
+
+    .compare-item {
+      padding: 20px 24px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .compare-mark {
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 22px;
+      color: var(--sub);
+      border-left: 1px solid var(--line);
+    }
+
+    .compare-mark.premium {
+      color: var(--blue);
+      font-weight: 700;
     }
 
     .free-note {
@@ -595,49 +718,20 @@
       color: var(--sub);
     }
 
-    /* philosophy */
     .philosophy {
       text-align: center;
       background: #fff;
     }
 
-    .philosophy h2 {
-      font-size: clamp(32px, 4.2vw, 58px);
-      line-height: 1.28;
-      letter-spacing: -0.03em;
-      margin-bottom: 30px;
-    }
-
-    .philosophy p {
-      max-width: 760px;
-      margin: 0 auto;
-      font-size: 18px;
-      line-height: 2.2;
-      color: var(--sub);
-      font-weight: 300;
-    }
-
-    /* CTA */
     .cta {
       background: var(--navy);
       color: #fff;
       text-align: center;
     }
 
-    .cta h2 {
-      font-size: clamp(36px, 5vw, 70px);
-      line-height: 1.2;
-      letter-spacing: -0.04em;
-      margin-bottom: 28px;
-    }
-
     .cta p {
-      max-width: 700px;
-      margin: 0 auto 44px;
       color: rgba(255,255,255,.68);
-      font-size: 18px;
-      line-height: 2.2;
-      font-weight: 300;
+      margin-bottom: 44px;
     }
 
     .cta-btns {
@@ -647,7 +741,6 @@
       flex-wrap: wrap;
     }
 
-    /* footer */
     footer {
       background: #111;
       color: rgba(255,255,255,.7);
@@ -697,7 +790,6 @@
       flex-wrap: wrap;
     }
 
-    /* line fab */
     .line-fab {
       position: fixed;
       right: 24px;
@@ -715,26 +807,28 @@
       font-weight: 600;
     }
 
-    .line-fab:hover {
-      transform: translateY(-1px);
-    }
-
     @media (max-width: 920px) {
       .nav {
         display: none;
       }
 
       .hero-inner,
-      .microscope-inner,
+      .difference-grid,
+      .risk-flex,
+      .scope-inner,
       .plan-featured-grid,
-      .split-inner,
       .footer-grid {
         grid-template-columns: 1fr;
       }
 
       .cards,
-      .plan-grid {
+      .feature-grid {
         grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        display: grid;
+        gap: 1px;
       }
 
       .hero {
@@ -751,8 +845,17 @@
         max-width: none;
       }
 
-      .microscope-grid {
+      .scope-grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .compare-head,
+      .compare-row {
+        grid-template-columns: 1.4fr 0.8fr 0.8fr;
+      }
+
+      .footer-links {
+        align-items: flex-start;
       }
     }
 
@@ -761,11 +864,16 @@
         padding: 84px 0;
       }
 
-      .hero-copy p,
       .intro p,
+      .difference-head p,
+      .feature-head p,
+      .risk-head p,
+      .risk-copy p,
+      .scope-copy p,
+      .plans-head p,
+      .price-note,
       .philosophy p,
-      .cta p,
-      .price-note {
+      .cta p {
         font-size: 16px;
       }
 
@@ -773,16 +881,30 @@
         padding: 36px 24px;
       }
 
-      .plan-box {
-        padding: 34px 24px;
-      }
-
-      .microscope-grid {
+      .scope-grid {
         grid-template-columns: 1fr;
       }
 
       .cta-btns {
         flex-direction: column;
+      }
+
+      .compare-item {
+        padding: 16px 14px;
+        font-size: 13px;
+      }
+
+      .compare-mark {
+        font-size: 18px;
+        padding: 16px 8px;
+      }
+
+      .compare-plan h3 {
+        font-size: 22px;
+      }
+
+      .compare-price {
+        font-size: 24px;
       }
     }
   </style>
@@ -794,8 +916,9 @@
       <a class="logo" href="#hero">Blue <em>Teeth</em> Program</a>
       <nav class="nav">
         <a href="#intro">コンセプト</a>
-        <a href="#about">違い</a>
-        <a href="#microscope">マイクロ体験</a>
+        <a href="#difference">違い</a>
+        <a href="#risk">水色リスク</a>
+        <a href="#scope">体験</a>
         <a href="#plans">料金</a>
         <a href="#cta" class="btn btn-primary nav-cta">相談する</a>
       </nav>
@@ -814,7 +937,7 @@
         <p>
           ただ歯をきれいにするだけでは、歯は守れません。<br>
           Blue Teeth Program は、歯の現状を丸裸にし、<br>
-          未来のリスクまで知るための体験です。
+          未来リスクまで知るための体験です。
         </p>
         <div class="hero-btns">
           <a href="#plans" class="btn btn-primary">プログラムを見る</a>
@@ -824,7 +947,7 @@
 
       <div class="hero-visual">
         <div class="hero-card">
-          <img src="images/hero-microscope.jpg" alt="マイクロスコープ診断のイメージ">
+          <img src="images/hero-main.jpg" alt="Blue Teeth Program のイメージ">
         </div>
         <div class="hero-float">
           <small>Visible. Knowable. Actionable.</small>
@@ -838,24 +961,24 @@
   </section>
 
   <section class="section intro" id="intro">
-    <div class="wrap">
+    <div class="wrap center">
       <div class="eyebrow">Concept</div>
       <h2>
         これは、歯科検診ではありません。<br>
         歯の現在地と未来を知る体験です。
       </h2>
-      <p>
+      <p style="margin-top:28px;">
         積み重なってきた治療の歴史。<br>
         まだ表に出ていないリスク。<br>
         これから守るために必要な選択。<br><br>
-        Blue Teeth Program は、
-        あなたの歯のことを隅から隅まで知るための時間です。
+        Blue Teeth Program は、あなたの歯のことを
+        隅から隅まで知るための時間です。
       </p>
 
       <div class="cards">
         <div class="card">
           <h3>現状を知る</h3>
-          <p>いま口の中で何が起きているのかを、精密に可視化します。</p>
+          <p>今、口の中で何が起きているのかを精密に可視化します。</p>
         </div>
         <div class="card">
           <h3>過去を読み解く</h3>
@@ -863,32 +986,33 @@
         </div>
         <div class="card">
           <h3>未来を守る</h3>
-          <p>これから起こりうる変化を知り、守るための行動につなげます。</p>
+          <p>起こりうる変化を知り、守るための行動につなげます。</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section split" id="about">
+  <section class="section difference" id="difference">
     <div class="wrap">
-      <div class="eyebrow" style="text-align:center; margin-bottom:18px;">The Difference</div>
-      <div style="text-align:center; margin-bottom:44px;">
-        <h2 style="font-size:clamp(30px,4vw,54px); line-height:1.3; letter-spacing:-0.03em; margin-bottom:14px;">
-          ただ、きれいにするだけでは。<br>歯は、守れない。
+      <div class="difference-head">
+        <div class="eyebrow">The Difference</div>
+        <h2>
+          ただ、きれいにするだけでは。<br>
+          歯は、守れない。
         </h2>
-        <p style="font-size:17px; color:var(--sub); line-height:2; font-weight:300;">
+        <p style="margin-top:20px;">
           見えていないものがある。<br>
           そのすべてを知ることが、本当のスタートです。
         </p>
       </div>
 
-      <div class="split-inner">
+      <div class="difference-grid">
         <div class="panel">
           <h3>一般的なクリーニング</h3>
           <ul>
             <li>表面の汚れを落とす</li>
-            <li>その日の爽快感で終わる</li>
             <li>今見えている範囲だけ整える</li>
+            <li>その日の爽快感で終わる</li>
             <li>未来のリスクまでは見えにくい</li>
           </ul>
         </div>
@@ -907,9 +1031,99 @@
     </div>
   </section>
 
-  <section class="section microscope" id="microscope">
-    <div class="wrap microscope-inner">
-      <div class="microscope-copy">
+  <section class="section" id="feature">
+    <div class="wrap">
+      <div class="feature-head">
+        <div class="eyebrow">Program Flow</div>
+        <h2>
+          知る。気づく。守る。<br>
+          その流れまで、設計する。
+        </h2>
+        <p style="margin-top:20px;">
+          ただ体験して終わるのではなく、<br>
+          歯を守りたくなるところまでが、このプログラムです。
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <h3>歯の状態を知る</h3>
+          <p>精密機器で、現在の口腔内を可視化します。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <h3>過去の治療を知る</h3>
+          <p>これまでの治療履歴と影響を読み解きます。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <h3>未来を知る</h3>
+          <p>今後起こりうるリスクと可能性を伝えます。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <h3>価値に気づく</h3>
+          <p>自分の歯を、本当に大切なものとして感じる体験です。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">05</div>
+          <h3>守りたくなる</h3>
+          <p>知ることで、これからの行動が変わります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section risk" id="risk">
+    <div class="wrap">
+      <div class="risk-head">
+        <div class="eyebrow">Hidden Risk</div>
+        <h2>
+          本当に価値が高いのは、<br>
+          水色が見えること。
+        </h2>
+        <p style="margin-top:20px;">
+          ただビフォーアフターを見るだけでは分からない。<br>
+          濃い青紫の層を落としたとき、はじめてその下に潜んでいた
+          むし歯リスクの高い水色の層が見えてきます。
+        </p>
+      </div>
+
+      <div class="risk-flex">
+        <div class="risk-image">
+          <img src="images/risk-explanation.jpg" alt="新しいプラーク、古いプラーク、水色のむし歯リスクの高いプラークの解説図">
+        </div>
+
+        <div class="risk-copy">
+          <h3>
+            汚れを落としている途中にしか、<br>
+            見えない価値がある。
+          </h3>
+          <p>
+            青紫に見える古いプラークの下には、<br>
+            <strong>むし歯リスクの高い水色の層</strong>が隠れていることがあります。
+          </p>
+          <p>
+            だからこそ、ただきれいになった結果だけを見るのではなく、<br>
+            <strong>落としている過程を見ること</strong>に意味があります。
+          </p>
+          <p>
+            この水色が見えた瞬間、患者さんは初めて、<br>
+            「自分の歯の中で何が起きているのか」を実感できます。
+          </p>
+          <p>
+            それは単なるクリーニングではなく、<br>
+            <strong>未来を守るための気づき</strong>です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section scope" id="scope">
+    <div class="wrap scope-inner">
+      <div class="scope-copy">
         <div class="eyebrow" style="color:rgba(255,255,255,.42);">Microscope Experience</div>
         <h2>
           見えなかったものが、<br>
@@ -918,7 +1132,7 @@
         <p>
           百聞は一見に如かず。<br>
           マイクロスコープで拡大して見たとき、<br>
-          はじめて自分の歯の現状が“自分ごと”になります。
+          はじめて自分の歯の現状が自分ごとになります。
         </p>
         <p>
           ただ説明を受けるのではなく、<br>
@@ -927,15 +1141,15 @@
         </p>
       </div>
 
-      <div class="microscope-grid">
-        <div class="microscope-main">
-          <img src="images/microscope-main.jpg" alt="マイクロスコープで見た歯の状態">
+      <div class="scope-grid">
+        <div class="scope-main">
+          <img src="images/microscope.jpg" alt="マイクロスコープによる口腔内の拡大画像">
         </div>
-        <div class="microscope-sub">
-          <img src="images/blue-stain.jpg" alt="青色染色で可視化した汚れ">
-        </div>
-        <div class="microscope-sub">
+        <div class="scope-sub">
           <img src="images/airflow.jpg" alt="EMSエアフロー施術イメージ">
+        </div>
+        <div class="scope-sub">
+          <img src="images/blue-stain.jpg" alt="青色染色で見えるプラークの状態">
         </div>
       </div>
     </div>
@@ -946,10 +1160,12 @@
       <div class="plans-head">
         <div class="eyebrow">Programs</div>
         <h2>
-          選べる体験、<br>
+          選べる体験。<br>
           変わらない本質。
         </h2>
-        <p>その場をきれいにするのではなく、歯の未来を守るための3つの体験。</p>
+        <p style="margin-top:18px;">
+          その場をきれいにするのではなく、歯の未来を守るための3つの体験。
+        </p>
       </div>
 
       <div class="price-note">
@@ -978,43 +1194,69 @@
               <li>現状説明・未来に起こりうるトラブル解説</li>
               <li>考えられるベストな治療法の説明</li>
               <li>青色染色 / マイクロスコープ解説</li>
-              <li>EMSエアフロー / 歯磨き完全攻略トレーニング</li>
+              <li>EMSエアフロー</li>
+              <li>歯磨き完全攻略トレーニング</li>
               <li>むし歯・詰め物・歯茎・出血状態の解説</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="plan-grid">
-        <div class="plan-box">
-          <div class="plan-label">Blue Teeth</div>
-          <h3>Premium</h3>
-          <p>
-            歯の状態を深く理解し、守り方まで学ぶプレミアムメンテナンス。
-          </p>
-          <div class="mini-price">¥55,000</div>
-          <ul class="plan-list">
-            <li>青色染色による染め出し</li>
-            <li>マイクロスコープによる拡大と現状解説</li>
-            <li>EMSエアフロー</li>
-            <li>歯磨き完全攻略トレーニング</li>
-            <li>歯肉・汚れ・出血状態の解説</li>
-          </ul>
+      <div class="plans-compare">
+        <div class="compare-head">
+          <div></div>
+          <div class="compare-plan">
+            <div class="plan-label">Blue Teeth</div>
+            <h3>Standard</h3>
+            <p class="compare-price">¥33,000<span>税込</span></p>
+          </div>
+          <div class="compare-plan compare-plan-premium">
+            <div class="plan-label">Blue Teeth</div>
+            <h3>Premium</h3>
+            <p class="compare-price">¥55,000<span>税込</span></p>
+          </div>
         </div>
 
-        <div class="plan-box">
-          <div class="plan-label">Blue Teeth</div>
-          <h3>Standard</h3>
-          <p>
-            青色染色とエアフローによる、見える化クリーニング体験。
-          </p>
-          <div class="mini-price">¥33,000</div>
-          <ul class="plan-list">
-            <li>青色染色による染め出し</li>
-            <li>EMSエアフロー</li>
-            <li>バイオフィルム・ステイン除去</li>
-            <li>歯肉縁上・縁下からの完全リセット</li>
-          </ul>
+        <div class="compare-row">
+          <div class="compare-item">青色染色による染め出し</div>
+          <div class="compare-mark">✓</div>
+          <div class="compare-mark premium">✓</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-item">マイクロスコープによる拡大と現状解説</div>
+          <div class="compare-mark">✓</div>
+          <div class="compare-mark premium">✓</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-item">EMSエアフロー</div>
+          <div class="compare-mark">✓</div>
+          <div class="compare-mark premium">✓</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-item">バイオフィルム・ステイン除去</div>
+          <div class="compare-mark">✓</div>
+          <div class="compare-mark premium">✓</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-item">歯肉縁上の汚れのリセット</div>
+          <div class="compare-mark">✓</div>
+          <div class="compare-mark premium">✓</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-item">歯肉縁下の歯石リセット</div>
+          <div class="compare-mark">—</div>
+          <div class="compare-mark premium">✓</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-item">歯磨き完全攻略トレーニング</div>
+          <div class="compare-mark">—</div>
+          <div class="compare-mark premium">✓</div>
         </div>
       </div>
 
@@ -1025,13 +1267,13 @@
   </section>
 
   <section class="section philosophy" id="philosophy">
-    <div class="wrap">
+    <div class="wrap center">
       <div class="eyebrow">Our Philosophy</div>
       <h2>
         歯の価値に、<br>
         気づく場所へ。
       </h2>
-      <p>
+      <p style="margin-top:28px;">
         歯が、人生の質を変える。<br><br>
         多くの人は、歯を失ってはじめてその価値に気づきます。<br>
         でも本当は、その前に知ることができる。<br><br>
@@ -1042,21 +1284,21 @@
   </section>
 
   <section class="section cta" id="cta">
-    <div class="wrap">
+    <div class="wrap center">
       <div class="eyebrow" style="color:rgba(255,255,255,.38);">Take the First Step</div>
       <h2>
         その後悔を、<br>
         なくしたい。
       </h2>
-      <p>
+      <p style="margin-top:28px;">
         歯を失った人は、必ずと言っていいほど、こう言います。<br>
-        「もっと早く知りたかった」と。<br><br>
+        もっと早く知りたかった、と。<br><br>
         まずは、知ることから始めてください。
       </p>
 
       <div class="cta-btns">
         <a class="btn btn-white" href="https://line.me/R/ti/p/@796omjow" target="_blank" rel="noopener">LINEで予約・相談する</a>
-        <a class="btn btn-ghost" href="https://line.me/R/ti/p/@796omjow" target="_blank" rel="noopener">プログラムについて問い合わせる</a>
+        <a class="btn btn-ghost" href="https://line.me/R/ti/p/@796omjow" target="_blank" rel="noopener">問い合わせる</a>
       </div>
     </div>
   </section>
